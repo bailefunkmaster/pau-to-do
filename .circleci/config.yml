@@ -15,7 +15,7 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
 
-    working_directory: ~/pau-to-do/frontend
+#     working_directory: ~/pau-to-do/frontend
 
     steps:
       - checkout
@@ -28,7 +28,7 @@ jobs:
 #            - v1-dependencies-
 
       - run: 
-          command: docker build -t pau-to-do/frontend:$CIRCLE_SHA1 .
+          command: docker build -t pau-to-do/frontend:$CIRCLE_SHA1 frontend
 
 #      - save_cache:
 #          paths:
