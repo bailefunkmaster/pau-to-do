@@ -4,11 +4,11 @@ EXPOSE 8080
 
 WORKDIR /usr/src/app
 
-COPY package.json ./
+COPY . .
+# COPY package.json ./
 RUN npm install
 RUN npm run-script build 
 
-COPY . .
 
 CMD ["sh", "-c", "npm start" ]
 
