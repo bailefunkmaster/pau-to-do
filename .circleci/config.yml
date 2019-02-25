@@ -28,7 +28,8 @@ jobs:
 #            - v1-dependencies-
 
       - run: 
-          command: docker build -t pau-to-do/frontend:$CIRCLE_SHA1 frontend
+          command: docker build -t pau-to-do/frontend:$CIRCLE_SHA1 frontend &&
+                   docker run pau-to-do/frontend:$CIRCLE_SHA1 npm build
 
 #      - save_cache:
 #          paths:
