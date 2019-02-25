@@ -5,9 +5,9 @@
 version: 2
 jobs:
   build:
-#    docker:
+    docker:
       # specify the version you desire here
-#      - image: circleci/node:8
+      - image: circleci/node:8
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -26,8 +26,8 @@ jobs:
             # fallback to using the latest cache if no exact match is found
 #            - v1-dependencies-
 
-      - run: 
-          command: docker build -t pau-to-do/frontend:$CIRCLE_SHA1 .
+#      - run: 
+#          command: docker build -t pau-to-do/frontend:$CIRCLE_SHA1 .
 
 #      - save_cache:
 #          paths:
