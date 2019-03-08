@@ -6,5 +6,5 @@ jobs:
       - checkout
       - run: 
           docker login -u $DOCKER_USER -p $DOCKER_PASS docker.5f59de2e2ef742c4b229.eastus.aksapp.io
-          docker build -t docker.5f59de2e2ef742c4b229.eastus.aksapp.io/frontend:$CIRCLE_SHA1 frontend
+          docker build -t docker.5f59de2e2ef742c4b229.eastus.aksapp.io/frontend frontend
           docker push docker.5f59de2e2ef742c4b229.eastus.aksapp.io/frontend:$CIRCLE_SHA1
