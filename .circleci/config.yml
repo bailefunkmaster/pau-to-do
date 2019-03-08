@@ -8,14 +8,13 @@ jobs:
         username: admin  # can specify string literal values
         password: $DOCKER_PASS  # or project environment variable reference
 
-    machine: true
+#     machine: true
     steps:
       - checkout
       - run: 
           command: |
             docker build docker.5f59de2e2ef742c4b229.eastus.aksapp.io/frontend:$CIRCLE_SHA1 frontend
-            docker push docker.5f59de2e2ef742c4b229.eastus.aksapp.io/frontend:$CIRCLE_SHA1
       - deploy:
           name: Push application Docker image
           command: |
-            docker push "docker.5f59de2e2ef742c4b229.eastus.aksapp.io/frontend:$CIRCLE_SHA1"
+            docker push docker.5f59de2e2ef742c4b229.eastus.aksapp.io/frontend:$CIRCLE_SHA1
