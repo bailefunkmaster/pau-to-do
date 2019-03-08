@@ -29,7 +29,7 @@ jobs:
       - run:
           name: Build docker image
           command: |
-            docker build docker.5f59de2e2ef742c4b229.eastus.aksapp.io/frontend:$CIRCLE_SHA1 frontend
+            docker build -t docker.5f59de2e2ef742c4b229.eastus.aksapp.io/frontend:$CIRCLE_SHA1 frontend
       - deploy:
           name: Push to nexus
           command: |
