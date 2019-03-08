@@ -2,11 +2,11 @@ version: 2
 jobs:
   build:
 #     working_directory: frontend
-#     docker:
-#     - image: docker.5f59de2e2ef742c4b229.eastus.aksapp.io/frontend:$CIRCLE_SHA1
-#       auth:
-#         username: admin  # can specify string literal values
-#         password: $DOCKER_PASS  # or project environment variable reference
+    docker:
+    - image: docker.5f59de2e2ef742c4b229.eastus.aksapp.io/frontend:$CIRCLE_SHA1
+      auth:
+        username: admin  # can specify string literal values
+        password: $DOCKER_PASS  # or project environment variable reference
 
 #     machine: true
     steps:
