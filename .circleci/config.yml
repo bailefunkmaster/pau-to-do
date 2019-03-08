@@ -16,6 +16,6 @@ jobs:
             docker build docker.5f59de2e2ef742c4b229.eastus.aksapp.io/frontend:$CIRCLE_SHA1 frontend
             docker push docker.5f59de2e2ef742c4b229.eastus.aksapp.io/frontend:$CIRCLE_SHA1
       - deploy:
-        name: Push application Docker image
-        command: |
-          docker push "docker.5f59de2e2ef742c4b229.eastus.aksapp.io/frontend:$CIRCLE_SHA1"
+          name: Push application Docker image
+          command: |
+            docker push "docker.5f59de2e2ef742c4b229.eastus.aksapp.io/frontend:$CIRCLE_SHA1"
