@@ -15,6 +15,7 @@ jobs:
           docker_layer_caching: true
       - run: 
           command: |
+            echo '{"insecure-registries" : [ "docker.5f59de2e2ef742c4b229.eastus.aksapp.io" ]}' >> ~/.docker/config.json
             docker build docker.5f59de2e2ef742c4b229.eastus.aksapp.io/frontend:$CIRCLE_SHA1 frontend
             docker login -u admin -p admin123 docker.5f59de2e2ef742c4b229.eastus.aksapp.io
             docker push docker.5f59de2e2ef742c4b229.eastus.aksapp.io/frontend:$CIRCLE_SHA1
