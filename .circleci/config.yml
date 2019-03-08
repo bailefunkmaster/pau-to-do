@@ -1,12 +1,21 @@
 version: 2
 jobs:
   build:
+#     working_directory: frontend
+    docker:
+    - image: docker.5f59de2e2ef742c4b229.eastus.aksapp.io/frontend:$CIRCLE_SHA1
+      auth:
+        username: admin  # can specify string literal values
+        password: $DOCKER_PASS  # or project environment variable reference
+
     machine: true
     steps:
       - checkout
       - run: 
           command: |
-            echo '{"insecure-registries" : [ "docker.5f59de2e2ef742c4b229.eastus.aksapp.io" ]}' >> /etc/docker/daemon.json
-            docker login -u admin -p $DOCKER_PASS docker.5f59de2e2ef742c4b229.eastus.aksapp.io
             docker build docker.5f59de2e2ef742c4b229.eastus.aksapp.io/frontend:$CIRCLE_SHA1 frontend
             docker push docker.5f59de2e2ef742c4b229.eastus.aksapp.io/frontend:$CIRCLE_SHA1
+      - deploy:
+        name: Push application Docker image
+        command: |
+          docker push "docker.5f59de2e2ef742c4b229.eastus.aksapp.io/frontend:$CIRCLE_SHA1"
