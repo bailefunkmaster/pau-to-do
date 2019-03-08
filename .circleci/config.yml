@@ -1,21 +1,38 @@
-version: 2
-jobs:
-  build:
+# version: 2
+# jobs:
+#   build:
 #     working_directory: frontend
 #     docker:
 #     - image: docker.5f59de2e2ef742c4b229.eastus.aksapp.io/frontend:$CIRCLE_SHA1
 #       auth:
 #         username: admin  # can specify string literal values
 #         password: $DOCKER_PASS  # or project environment variable reference
-
-    machine: true
-    steps:
-      - checkout
+#     machine: true
+#     steps:
+#       - checkout
 #       - setup_remote_docker:
 #           docker_layer_caching: true
-      - run: 
+#       - run: 
+#           command: |
+#             echo '{"insecure-registries" : [ "docker.5f59de2e2ef742c4b229.eastus.aksapp.io" ]}' >> ~/.docker/config.json
+#             docker build docker.5f59de2e2ef742c4b229.eastus.aksapp.io/frontend:$CIRCLE_SHA1 frontend
+#             docker login -u admin -p admin123 docker.5f59de2e2ef742c4b229.eastus.aksapp.io
+#             docker push docker.5f59de2e2ef742c4b229.eastus.aksapp.io/frontend:$CIRCLE_SHA1
+            
+jobs:
+  build:
+    docker:
+      - image: docker:17.05.0-ce-git
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build docker image
           command: |
-            echo '{"insecure-registries" : [ "docker.5f59de2e2ef742c4b229.eastus.aksapp.io" ]}' >> ~/.docker/config.json
             docker build docker.5f59de2e2ef742c4b229.eastus.aksapp.io/frontend:$CIRCLE_SHA1 frontend
+      - deploy:
+          name: Push to nexus
+          command: |
             docker login -u admin -p admin123 docker.5f59de2e2ef742c4b229.eastus.aksapp.io
             docker push docker.5f59de2e2ef742c4b229.eastus.aksapp.io/frontend:$CIRCLE_SHA1
+
