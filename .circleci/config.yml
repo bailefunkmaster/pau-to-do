@@ -25,9 +25,9 @@ jobs:
       - image: docker:17.05.0-ce-git
         environment:
           DOCKER_OPTS='--insecure-registry docker.5f59de2e2ef742c4b229.eastus.aksapp.io'
-      auth:
-        username: admin
-        password: $DOCKER_PASS
+#       auth:
+#         username: admin
+#         password: $DOCKER_PASS
     steps:
       - checkout
       - setup_remote_docker:
